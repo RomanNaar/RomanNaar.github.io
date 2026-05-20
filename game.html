@@ -1,0 +1,278 @@
+Backround= Group(
+Rect(0,0,400,400,fill=gradient(rgb(167,8,76),rgb(255,10,114),start='top')),
+Rect(0,0,400,35, fill=rgb(88,12,39)),
+Rect(0,365,400,40, fill=rgb(88,12,39)),
+    )
+
+m1=Rect(0,35,40,20, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m2=Rect(0,62,40,40, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m3=Rect(0,109,130,130, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m4=Rect(47,35,128,67, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m5=Rect(182,69,65,65, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m6=Rect(254,69,65,65, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m7=Rect(0,246,130,119,fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m8=Rect(182,141,137,137, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m9=Rect(182,35,88,27, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m10=Rect(289,285,142,80, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m11=Rect(137,109,38,256, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m12=Rect(277,35,123,27, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m13=Rect(326,69,101,101, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m17=Rect(434,69,101,101,  fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m18=Rect(326,177,101,101, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m19=Rect(434,177,101,101, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m14=Rect(182,285,100,80, fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m15=Rect(407,35,128,27,fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+m16=Rect(438,285,97,80,fill=gradient(rgb(190,8,85),rgb(213,6,96),start='top'))
+    
+ship = Group(
+Rect(202,194,14,14,fill='yellow',border='black',borderWidth=1),
+Polygon(197,206,197,221,204,216,204,208,fill='yellow',border='black',borderWidth=1),
+Polygon(204,208,204,220,216,220,216,208,fill='yellow',border='black',borderWidth=1),
+Polygon(216,220,226,216,226,208,216,205,fill='yellow',border='black',borderWidth=1),
+Polygon(199,200,199,210,220,210,220,207.5,202,205.5,202,200, fill=rgb(15,255,252),border='black',borderWidth=1),
+Polygon(197,217,192.5,217,192.5,210,197,210,fill='yellow',border='black',borderWidth=1),
+Rect(205,196.6,3,3,fill=rgb(15,255,252),border='black',borderWidth=.7),
+Rect(210,196.6,3,3,fill=rgb(15,255,252),border='black',borderWidth=.7),
+Rect(204,201,9.5,3,fill=rgb(15,255,252),border='black',borderWidth=.7)
+)
+
+b1=Rect(12,370,100,32,fill=rgb(73,9,33))
+b2=Rect(124,370,100,32,fill=rgb(73,9,33))
+b3=Rect(236,370,100,32,fill=rgb(73,9,33))
+b4=Rect(348,370,100,32,fill=rgb(73,9,33))
+b5=Rect(460,370,100,32,fill=rgb(73,9,33))
+t1=Rect(12,0,100,32,fill=rgb(73,9,33))
+t2=Rect(124,0,100,32,fill=rgb(73,9,33))
+t3=Rect(236,0,100,32,fill=rgb(73,9,33))
+t4=Rect(348,0,100,32,fill=rgb(73,9,33))
+t5=Rect(460,0,100,32,fill=rgb(73,9,33))
+
+
+block = Rect(410,randrange(50,350),30,30,fill='black')
+block2 = Rect(410,randrange(50,350),30,30,fill='black')
+block3 = Rect(410,randrange(50,350),30,30,fill='black')
+block4 = Rect(410,randrange(50,350),30,30,fill='black')
+block5 = Rect(410,randrange(50,350),30,30,fill='black')
+block6 = Rect(410,randrange(50,350),30,30,fill='black')
+Line(0,0,400,0, lineWidth=6),
+Line(0,400,400,400, lineWidth=6)
+deathScreen=Rect(0,0,400,400,visible=False)
+Score=Label('Score:',300,20,size=10, fill='white')
+scoreLabel=Label('0',325,20,size=10, fill='white')
+GO=Label('GameOver :(',200,100,size=30,visible=False, fill='white')
+app.stepsPerSecond = 60
+app.velocity=0
+app.gravity=.335
+app.liftGravity=.385
+app.maxlift=5
+app.maxFall=5
+app.jumpHeld=False
+app.inisialP=0
+app.finalP=0
+app.change=0
+app.gameover=0
+app.score=0
+#3083
+
+
+def onStep():
+    ship.centerX=150
+    if(app.gameover==1):
+        deathScreen.visible=True
+        scoreLabel.centerY=200
+        scoreLabel.centerX=240
+        scoreLabel.size=20
+        Score.centerY=200
+        Score.centerX=180
+        Score.size=20
+        GO.visible=True
+        app.stop()
+
+    if app.jumpHeld==True:
+        app.velocity-=app.liftGravity
+        if app.velocity<-app.maxlift:
+            app.velocity = -app.maxlift
+
+    if not app.jumpHeld:
+        app.velocity += app.gravity 
+    
+    if app.velocity > app.maxFall:
+        app.velocity  = app.maxFall
+        
+    app.inisialP=ship.centerY
+    
+    ship.centerY += app.velocity
+    
+    app.finalP=ship.centerY
+    
+    app.change=app.finalP-app.inisialP
+    
+    ship.rotateAngle=app.change*4.5
+    
+    if((ship.hitsShape(block)==True) or (ship.hitsShape(block2)==True) or (ship.hitsShape(block3)==True) or (ship.hitsShape(block4)==True) or (ship.hitsShape(block5)==True) or (ship.hitsShape(block6)==True)):
+        app.gameover=1
+       
+    app.score += 1
+    scoreLabel.value=str(app.score)
+    
+    #Collision with ground
+    if ship.centerY+15>=365:
+        ship.centerY = 350
+        if app.velocity > 0:
+            app.velocity = 0
+        app.jumpHeld=False
+        
+    #Collision with ceiling
+    if ship.centerY-15<=35:
+        ship.centerY = 50
+        if app.velocity < 0:
+            app.velocity+0
+        app.jumpHeld=False
+    
+    b1.centerX-=3+((app.score-1000)/1000)
+    b2.centerX-=3+((app.score-1000)/1000)
+    b3.centerX-=3+((app.score-1000)/1000)
+    b4.centerX-=3+((app.score-1000)/1000)
+    b5.centerX-=3+((app.score-1000)/1000)
+    t1.centerX-=3+((app.score-1000)/1000)
+    t2.centerX-=3+((app.score-1000)/1000)
+    t3.centerX-=3+((app.score-1000)/1000)
+    t4.centerX-=3+((app.score-1000)/1000)
+    t5.centerX-=3+((app.score-1000)/1000)
+    m1.centerX-=.2
+    m2.centerX-=.2
+    m3.centerX-=.2
+    m4.centerX-=.2
+    m5.centerX-=.2
+    m6.centerX-=.2
+    m7.centerX-=.2
+    m8.centerX-=.2
+    m9.centerX-=.2
+    m10.centerX-=.2
+    m11.centerX-=.2
+    m12.centerX-=.2
+    m13.centerX-=.2
+    m14.centerX-=.2
+    m15.centerX-=.2
+    m16.centerX-=.2
+    m17.centerX-=.2
+    m18.centerX-=.2
+    m19.centerX-=.2
+
+    block.centerX-=3+((app.score-1000)/1000)
+    block2.centerX-=3+((app.score-1000)/1000)
+    
+    if app.score>300:
+        block3.centerX-=3+((app.score-1000)/1000)
+    
+    if app.score>500:
+        block4.centerX-=3+((app.score-1000)/1000)
+    if app.score>1000:
+        block5.centerX-=3+((app.score-1000)/1000)
+    if app.score>1500:
+        block6.centerX-=3+((app.score-1000)/1000)
+    
+    # obsticle random start position
+    if block.centerX<-15:
+        block.centerX=410
+        block.centerY=randrange(50,350)
+    if block2.centerX<-15:
+        block2.centerX=410
+        block2.centerY=randrange(50,350)
+    if block3.centerX<-15:
+        block3.centerX=410
+        block3.centerY=randrange(50,350)
+    if block4.centerX<-15:
+        block4.centerX=410
+        block4.centerY=randrange(50,350)
+    if block5.centerX<-15:
+        block5.centerX=410
+        block5.centerY=randrange(50,350)
+    if block6.centerX<-15:
+        block6.centerX=410
+        block6.centerY=randrange(50,350)
+        
+    #BACKROUNDMOVEMENT
+    if b1.centerX<=-125:
+        b1.centerX=425
+    if b2.centerX<=-125:
+        b2.centerX=425
+    if b3.centerX<=-125:
+        b3.centerX=425
+    if b4.centerX<=-125:
+        b4.centerX=425
+    if b5.centerX<=-125:
+        b5.centerX=425
+    if t1.centerX<=-125:
+        t1.centerX=425
+    if t2.centerX<=-125:
+        t2.centerX=425
+    if t3.centerX<=-125:
+        t3.centerX=425
+    if t4.centerX<=-125:
+        t4.centerX=425
+    if t5.centerX<=-125:
+        t5.centerX=425
+        
+    #FarBackroundMovement
+    if m1.centerX<=-122:
+        m1.centerX=420
+    if m2.centerX<=-122:
+        m2.centerX=420
+    if m3.centerX<=-77:
+        m3.centerX=465
+    if m4.centerX<=-78:
+        m4.centerX=464
+    if m5.centerX<=-109.5:
+        m5.centerX=432.5
+    if m6.centerX<=-109.5:
+        m6.centerX=432.5
+    if m7.centerX<=-77:
+        m7.centerX=465
+    if m8.centerX<=-73.5:
+        m8.centerX=468.5
+    if m9.centerX<=-98:
+        m9.centerX=444
+    if m10.centerX<=-71:
+        m10.centerX=471
+    if m11.centerX<=-98:
+        m11.centerX=444
+    if m12.centerX<=-79.5:
+        m12.centerX=462.5
+    if m13.centerX<=-91.5:
+        m13.centerX=450.5
+    if m14.centerX<=-92:
+        m14.centerX=450
+    if m15.centerX<=-78:
+        m15.centerX=464
+    if m16.centerX<=-91.5:
+        m16.centerX=450.5
+    if m17.centerX<=-91.5:
+        m17.centerX=450.5
+    if m18.centerX<=-91.5:
+        m18.centerX=450.5
+    if m19.centerX<=-91.5:
+        m19.centerX=450.5
+
+    
+    pass
+
+def onKeyHold(keys):
+    if ('w' in keys or 'space' in keys):
+        app.jumpHeld=True
+
+pass
+
+def onKeyRelease(key):
+    if key == 'w' or key == 'space':
+        app.jumpHeld = False
+
+def onMousePress(mouseX,mouseY):
+    app.jumpHeld=True
+
+            
+def onMouseRelease(mouseX, mouseY):
+    app.jumpHeld = False
+    
+    
+    
