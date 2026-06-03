@@ -5,143 +5,205 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My CMU Game Website</title>
     <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Body Styling */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #ADD8E6; /* Light Blue */
-            color: #FFFF00; /* Yellow Text */
-            text-shadow: 1px 1px 0 #000000; /* Black Border */
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ADD8E6;
+            color: #FFFF00;
+            text-shadow: 1px 1px 0 #000;
         }
 
-        /* Section Styling */
-        section {
-            padding: 50px 20px;
-            border-bottom: 3px solid #000000;
+        /* Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 0;
+            z-index: 1000;
         }
 
-        h1, h2, h3 {
-            margin-bottom: 20px;
-        }
-
-        a {
+        nav a {
             color: #FFFF00;
             text-decoration: none;
             font-weight: bold;
-            text-shadow: 1px 1px 0 #000000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
 
-        a:hover {
-            text-decoration: underline;
+        nav a:hover {
+            background-color: #000;
         }
 
-        /* Game Embed Styling */
-        .game-container {
+        section {
+            padding: 60px 20px;
+            border-bottom: 3px solid #000;
+        }
+
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+
+        /* Section Containers */
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Screenshots Grid */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .screenshots-grid img {
+            width: 100%;
+            border: 3px solid #000;
+            border-radius: 10px;
+        }
+
+        /* Game Card */
+        .game-card {
+            background-color: rgba(0,0,0,0.2);
+            padding: 20px;
             margin: 20px 0;
+            border-radius: 10px;
             text-align: center;
         }
 
         iframe {
             width: 80%;
             height: 500px;
-            border: 3px solid #000000;
+            border: 3px solid #000;
             border-radius: 10px;
         }
 
-        /* Screenshots / Images */
-        .screenshots img {
-            max-width: 90%;
-            margin: 10px 0;
-            border: 3px solid #000000;
-            border-radius: 8px;
-        }
-
-        /* High Scores */
+        /* High Scores Cards */
         .high-scores {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .score-card {
             background-color: rgba(0,0,0,0.2);
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
+            width: 200px;
+            text-align: center;
         }
 
-        ul {
-            list-style-type: none;
+        /* Buttons */
+        .btn {
+            background-color: #FFFF00;
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+            transition: background 0.3s;
         }
 
-        li {
-            margin: 5px 0;
+        .btn:hover {
+            background-color: #FFD700;
         }
 
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            iframe {
-                width: 100%;
-                height: 400px;
-            }
+            iframe { width: 100%; height: 400px; }
+            nav { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- About & Inspiration -->
+    <!-- Navigation -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#game">Play</a>
+        <a href="#high-scores">High Scores</a>
+        <a href="#challenges">Challenges</a>
+    </nav>
+
+    <!-- About Section -->
     <section id="about">
-        <h1>About This Project</h1>
-        <p>My games are part of my fourth creative task and are recreations of <strong>Geometry Dash ship gameplay</strong>.</p>
+        <div class="container">
+            <h1>About This Project</h1>
+            <p>My games are part of my fourth creative task and are recreations of <strong>Geometry Dash ship gameplay</strong>.</p>
 
-        <h2>Inspiration</h2>
-        <p>This project was inspired by Geometry Dash, originally made by RobTop. I wanted to recreate the ship flying mechanics with fun challenges.</p>
+            <h2>Inspiration</h2>
+            <p>This project was inspired by Geometry Dash, originally made by RobTop. I wanted to recreate the ship flying mechanics with fun challenges.</p>
 
-        <h2>About the Class</h2>
-        <p>This project was completed as part of a creative task in my CMU class. The goal was to explore coding and game design concepts in a hands-on way.</p>
+            <h2>About the Class</h2>
+            <p>This project was completed as part of a creative task in my CMU class. The goal was to explore coding and game design concepts in a hands-on way.</p>
+        </div>
     </section>
 
-    <!-- Screenshots / Gameplay Explanations -->
+    <!-- Screenshots -->
     <section id="screenshots">
-        <h1>Game Screenshots / Explanations</h1>
-        <div class="screenshots">
-            <img src="screenshot1.png" alt="Gameplay Screenshot 1">
-            <img src="screenshot2.png" alt="Gameplay Screenshot 2">
+        <div class="container">
+            <h1>Game Screenshots</h1>
+            <div class="screenshots-grid">
+                <img src="screenshot1.png" alt="Screenshot 1">
+                <img src="screenshot2.png" alt="Screenshot 2">
+                <img src="screenshot3.png" alt="Screenshot 3">
+                <img src="screenshot4.png" alt="Screenshot 4">
+            </div>
         </div>
-        <p>There are two variations of the game: a challenge mode where two walls converge from top to bottom, and a survival mode where blocks come from the left side.</p>
     </section>
 
     <!-- Playable Game -->
     <section id="game">
-        <h1>Play My Game</h1>
-        <div class="game-container">
-            <iframe src="https://academy.cs.cmu.edu/sharing/moccasinDog202923" title="Geometry Dash Ship Game" allowfullscreen></iframe>
+        <div class="container">
+            <h1>Play My Game</h1>
+            <div class="game-card">
+                <iframe src="https://academy.cs.cmu.edu/sharing/moccasinDog202923" title="Geometry Dash Ship Game" allowfullscreen></iframe>
+                <a href="https://academy.cs.cmu.edu/sharing/moccasinDog202923" target="_blank" class="btn">Open Game in New Tab</a>
+            </div>
         </div>
-        <p><a href="https://academy.cs.cmu.edu/sharing/moccasinDog202923" target="_blank">Open Game in New Tab</a></p>
     </section>
 
     <!-- High Scores -->
     <section id="high-scores">
-        <h1>High Scores</h1>
-        <div class="high-scores">
-            <ul>
-                <li>Player1: 1200</li>
-                <li>Player2: 950</li>
-                <li>Player3: 870</li>
-                <!-- Add dynamic scores later -->
-            </ul>
+        <div class="container">
+            <h1>High Scores</h1>
+            <div class="high-scores">
+                <div class="score-card">
+                    <h3>Player1</h3>
+                    <p>1200</p>
+                </div>
+                <div class="score-card">
+                    <h3>Player2</h3>
+                    <p>950</p>
+                </div>
+                <div class="score-card">
+                    <h3>Player3</h3>
+                    <p>870</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Coding Challenges -->
-    <section id="coding-challenges">
-        <h1>Coding Challenges</h1>
-        <p>During this project, I faced several challenges:</p>
-        <ul>
-            <li>Translating gameplay mechanics into code.</li>
-            <li>Embedding playable games smoothly on the page.</li>
-            <li>Maintaining a fun, visually recognizable style.</li>
-        </ul>
+    <section id="challenges">
+        <div class="container">
+            <h1>Coding Challenges</h1>
+            <ul>
+                <li>Translating gameplay mechanics into code.</li>
+                <li>Embedding playable games smoothly on the page.</li>
+                <li>Maintaining a fun, visually recognizable style.</li>
+            </ul>
+        </div>
     </section>
 
 </body>
