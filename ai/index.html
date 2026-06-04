@@ -10,43 +10,47 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ADD8E6;
-            color: #FFFF00;
-            text-shadow: 1px 1px 0 #000;
+            background: linear-gradient(to bottom, #1e1e2f, #2a2a3d);
+            color: #f0f0f0;
+            line-height: 1.6;
         }
 
         /* Navigation Bar */
         nav {
             position: sticky;
             top: 0;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(30, 30, 50, 0.95);
             display: flex;
-            justify-content: space-around;
-            align-items: center;
+            justify-content: center;
+            gap: 20px;
             padding: 15px 0;
             z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
         nav a {
-            color: #FFFF00;
+            color: #ffd700;
             text-decoration: none;
             font-weight: bold;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: 0.3s all;
         }
 
         nav a:hover {
-            background-color: #000;
+            background-color: #ffd700;
+            color: #1e1e2f;
+            transform: scale(1.1);
         }
 
         section {
-            padding: 60px 20px;
-            border-bottom: 3px solid #000;
+            padding: 80px 20px;
         }
 
         h1, h2 {
             margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px #000;
         }
 
         /* Section Containers */
@@ -59,29 +63,44 @@
         .screenshots-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 25px;
+            margin-top: 40px;
         }
 
         .screenshots-grid img {
             width: 100%;
-            border: 3px solid #000;
-            border-radius: 10px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .screenshots-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.6);
         }
 
         /* Game Card */
         .game-card {
-            background-color: rgba(0,0,0,0.2);
+            background: rgba(50,50,70,0.8);
             padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
+            margin: 40px 0;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
         iframe {
             width: 80%;
+            max-width: 800px;
             height: 500px;
-            border: 3px solid #000;
-            border-radius: 10px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+
+        iframe:hover {
+            transform: scale(1.02);
         }
 
         /* High Scores Cards */
@@ -90,37 +109,54 @@
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
+            margin-top: 30px;
         }
 
         .score-card {
-            background-color: rgba(0,0,0,0.2);
-            padding: 15px;
-            border-radius: 10px;
+            background: rgba(50,50,70,0.7);
+            padding: 20px;
+            border-radius: 12px;
             width: 200px;
             text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .score-card:hover {
+            transform: translateY(-5px);
+            background: rgba(70,70,100,0.8);
         }
 
         /* Buttons */
         .btn {
-            background-color: #FFFF00;
-            color: #000;
-            padding: 10px 20px;
+            background-color: #ffd700;
+            color: #1e1e2f;
+            padding: 12px 25px;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 5px;
-            margin-top: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
             display: inline-block;
-            transition: background 0.3s;
+            transition: 0.3s all;
         }
 
         .btn:hover {
-            background-color: #FFD700;
+            background-color: #ffea00;
+            transform: scale(1.05);
+        }
+
+        /* Lists */
+        ul {
+            list-style-type: disc;
+            margin: 20px auto;
+            max-width: 700px;
+            padding-left: 20px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             iframe { width: 100%; height: 400px; }
-            nav { flex-direction: column; }
+            nav { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -139,13 +175,13 @@
     <section id="about">
         <div class="container">
             <h1>About This Project</h1>
-            <p>My games are part of my fourth creative task and are recreations of <strong>Geometry Dash ship gameplay</strong>.</p>
+            <p style="text-align:center;">My games are part of my fourth creative task and are recreations of <strong>Geometry Dash ship gameplay</strong>.</p>
 
             <h2>Inspiration</h2>
-            <p>This project was inspired by Geometry Dash, originally made by RobTop. I wanted to recreate the ship flying mechanics with fun challenges.</p>
+            <p style="text-align:center;">Inspired by Geometry Dash, originally made by RobTop. I wanted to recreate the ship flying mechanics with fun challenges.</p>
 
             <h2>About the Class</h2>
-            <p>This project was completed as part of a creative task in my CMU class. The goal was to explore coding and game design concepts in a hands-on way.</p>
+            <p style="text-align:center;">Completed as part of a creative task in my CMU class. The goal was to explore coding and game design concepts hands-on.</p>
         </div>
     </section>
 
