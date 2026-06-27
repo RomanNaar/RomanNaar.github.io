@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom RGB Chess Board</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #333;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+    }
+
+    .controls {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    input {
+        width: 120px;
+        padding: 5px;
+        margin: 5px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .board {
+        display: grid;
+        grid-template-columns: repeat(8, 70px);
+        grid-template-rows: repeat(8, 70px);
+        border: 4px solid black;
+    }
+
+    .square {
+        width: 70px;
+        height: 70px;
+    }
+</style>
+</head>
+<body>
+
+<h2>Custom RGB Chess Board</h2>
+
+<div class="controls">
+    <label>Light Squares RGB</label><br>
+    <input id="lightRGB" value="240,217,181"><br><br>
+
+    <label>Dark Squares RGB</label><br>
+    <input id="darkRGB" value="181,136,99"><br><br>
+
+    <button onclick="updateBoard()">Update Colors</button>
+</div>
+
+<div class="board" id="board"></div>
+
+<script>
+const board = document.getElementById("board");
+
+// Default RGB values
+let lightRGB = "240,217,181";
+let darkRGB = "181,136,99";
+
+// Create board once
+for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 8; col++) {
+        const square = document.createElement("div");
+        square.classList.add("square");
+        square.dataset.light = ((row + col) % 2 === 0);
+        board.appendChild(square);
+    }
+}
+
+function updateBoard() {
+    lightRGB = document.getElementById("lightRGB").value;
+    darkRGB = document.getElementById("darkRGB").value;
+
+    const squares = document.querySelectorAll(".square");
+
+    squares.forEach(square => {
+        if (square.dataset.light === "true") {
+            square.style.backgroundColor = `rgb(${lightRGB})`;
+        } else {
+            square.style.backgroundColor = `rgb(${darkRGB})`;
+        }
+    });
+}
+
+// Draw the board initially
+updateBoard();
+</script>
+
+</body>
+</html>
